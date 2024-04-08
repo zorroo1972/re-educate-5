@@ -17,11 +17,19 @@ public class TppProductRegisterResponse {
 
     }
 
-    public void setDateResponse(Date dateResponse) {
-        this.dateResponse = dateResponse;
+    public void setDateResponse() {
+        this.dateResponse = new Date();
     }
 
     public void setAccountId(String accountId) {
         this.accountId = accountId;
+    }
+
+    public Date getDateResponse() {
+        return dateResponse;
+    }
+
+    public String getAccountId() {
+        return accountId;
     }
 }
