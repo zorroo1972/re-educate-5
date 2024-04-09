@@ -1,4 +1,6 @@
 package ru.mvc.services;
+import jakarta.validation.ConstraintViolationException;
+import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -6,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mvc.exceptions.ErrorMessage;
 import ru.mvc.handlers.RegisterHandler;
 import ru.mvc.requests.TppProductRegisterRequest;
 import ru.mvc.repositories.*;
@@ -24,20 +25,23 @@ public class TppProductRegisterService {
 
     public TppProductRegisterService() {
     }
-    public static TppProductRegisterResponse getTppProductRegisterResponse(Long registerId){
+    public static ResponseEntity<?>  getTppProductRegisterResponse(Long registerId) {
+        /*
         TppProductRegisterResponse tppProductRegisterResponse = new TppProductRegisterResponse();
         tppProductRegisterResponse.setAccountId(String.valueOf(registerId));
         tppProductRegisterResponse.setDateResponse();
-        return new ResponseEntity<>(tppProductRegisterResponse,HttpStatus.CREATED)
-                .status(HttpStatus.CREATED)
-                .contentType(MediaType.APPLICATION_JSON)
-                .header("Accept",MediaType.APPLICATION_JSON_VALUE)
-                .body(tppProductRegisterResponse).getBody();
-    }
-    public TppProductRegisterResponse process(TppProductRegisterRequest tppProductRegisterRequest) throws ErrorMessage {
 
+         */
+        JSONObject jResponse = new JSONObject();
+        JSONObject jSub = new JSONObject();
+        jSub.put("accountId",registerId);
+        jResponse.put("data",jSub);
+        return new ResponseEntity<String>(jResponse.toString(), HttpStatus.CREATED);
+    }
+    public ResponseEntity<?>  process(TppProductRegisterRequest tppProductRegisterRequest) throws CheckRegisterException, CheckRegisterTypeException {
         var registerTypeCode = tppProductRegisterRequest.getRegistryTypeCode();
-        if(registerRepo.findByProductIdAndType(tppProductRegisterRequest.getInstanceId(),registerTypeCode)!= null) throw new ResourceNotFoundException("jkk");
+        if(registerRepo.findByProductIdAndType(tppProductRegisterRequest.getInstanceId(),registerTypeCode)!= null)
+            throw new CheckRegisterException(tppProductRegisterRequest);
         var register = registerHandler.setRegister(tppProductRegisterRequest);
         registerRepo.save(register);
         return getTppProductRegisterResponse(Long.valueOf(register.getId()));

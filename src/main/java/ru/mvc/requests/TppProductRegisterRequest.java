@@ -1,5 +1,6 @@
 package ru.mvc.requests;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -10,28 +11,41 @@ import org.springframework.validation.annotation.Validated;
 public class TppProductRegisterRequest{
         @NotNull(message = "Не задано значение параметра %s .")
         private Long instanceId;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String registryTypeCode;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String accountType;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String currencyCode;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String branchCode;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String priorityCode;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String mdmCode;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String clientCode;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String trainRegion;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String counter;
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotBlank(message = "Не задано значение параметра %s .")
         private  String salesCode;
 
         private TppProductRegisterRequest() {
+        }
+        public TppProductRegisterRequest(Long instanceId, String registryTypeCode, String accountType, String currencyCode, String branchCode, String priorityCode, String mdmCode, String clientCode, String trainRegion, String counter, String salesCode) {
+                this.instanceId = instanceId;
+                this.registryTypeCode = registryTypeCode;
+                this.accountType = accountType;
+                this.currencyCode = currencyCode;
+                this.branchCode = branchCode;
+                this.priorityCode = priorityCode;
+                this.mdmCode = mdmCode;
+                this.clientCode = clientCode;
+                this.trainRegion = trainRegion;
+                this.counter = counter;
+                this.salesCode = salesCode;
         }
 
         public TppProductRegisterRequest(Long instanceId) {

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Entity
-@Table(name = "tpp_ref_product_register_type")
+@Table(name = "tpp_ref_product_register_type", schema = "public")
 public class TppRefProductRegisterTypeDto {
     @Id
     @GeneratedValue

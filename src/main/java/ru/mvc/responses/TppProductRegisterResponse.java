@@ -8,7 +8,7 @@ public class TppProductRegisterResponse {
     private Date dateResponse;
     private String accountId;
 
-    public TppProductRegisterResponse(Date dateResponse, String accountId) {
+    public TppProductRegisterResponse(String accountId) {
         this.dateResponse = dateResponse;
         this.accountId = accountId;
     }
