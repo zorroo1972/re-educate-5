@@ -22,7 +22,7 @@ public class RegisterHandler {
         tppProductRegisterDto.setAccountNumber(account.getAccountNumber());
         tppProductRegisterDto.setCurrencyCode(tppProductRegisterRequest.getCurrencyCode());
         tppProductRegisterDto.setProductId(tppProductRegisterRequest.getInstanceId());
-        tppProductRegisterDto.getState(State.Открыт.getCode());
+        tppProductRegisterDto.setState(State.Открыт.getCode().toString());
         tppProductRegisterDto.setType(registerType.getValue());
     return tppProductRegisterDto;
     }

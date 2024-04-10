@@ -1,9 +1,7 @@
 package ru.mvc.services;
-import jakarta.validation.ConstraintViolationException;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -11,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.mvc.handlers.RegisterHandler;
 import ru.mvc.requests.TppProductRegisterRequest;
 import ru.mvc.repositories.*;
-import ru.mvc.responses.*;
 import ru.mvc.exceptions.*;
 
 @Service
@@ -19,8 +16,6 @@ import ru.mvc.exceptions.*;
 @Transactional
 public class TppProductRegisterService {
     @Autowired TppProductRegisterRepo registerRepo;
-    @Autowired TppProductRepo productRepo;
-    @Autowired TppRefProductRegisterTypeRepo registerTypeRepo;
     @Autowired RegisterHandler registerHandler;
 
     public TppProductRegisterService() {

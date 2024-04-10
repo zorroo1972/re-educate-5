@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import ru.mvc.exceptions.*;
-import ru.mvc.responses.TppProductRegisterResponse;
 import ru.mvc.services.TppProductRegisterService;
 import ru.mvc.requests.TppProductRegisterRequest;
 

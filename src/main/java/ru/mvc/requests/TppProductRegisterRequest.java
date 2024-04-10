@@ -2,34 +2,33 @@ package ru.mvc.requests;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 
 @Component
 @Validated
 public class TppProductRegisterRequest{
-        @NotNull(message = "Не задано значение параметра %s .")
+        @NotNull
         private Long instanceId;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String registryTypeCode;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String accountType;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String currencyCode;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String branchCode;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String priorityCode;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String mdmCode;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String clientCode;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String trainRegion;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String counter;
-        @NotBlank(message = "Не задано значение параметра %s .")
+        @NotBlank
         private  String salesCode;
 
         private TppProductRegisterRequest() {

@@ -53,6 +53,22 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         jResponse.put("Ошибка", ": Счет не найден ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(CheckProductException.class)
+    public ResponseEntity<?> handle(CheckProductException ex) {
+        JSONObject jResponse = new JSONObject();
+        jResponse.put("Ошибка", "Параметр ContractNumber № договора  "
+                + ex.getTppProductRequest().getContractNumber() + " уже существует для ЭП с ИД "
+                + ex.getTppProductRequest().getInstanceId() + ".   ");
+        return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CheckAgreementException.class)
+    public ResponseEntity<?> handle(CheckAgreementException ex) {
+        JSONObject jResponse = new JSONObject();
+        jResponse.put("Ошибка", "Параметр № Дополнительного соглашения (сделки) Number " // TODO заменить getContractNumber
+                + ex.getTppProductRequest().getContractNumber() + " уже существует для ЭП с ИД "
+                + ex.getTppProductRequest().getInstanceId() + ".   ");
+        return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
+    }
 }
 
 
