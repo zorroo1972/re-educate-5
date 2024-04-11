@@ -4,17 +4,19 @@ import ru.mvc.requests.TppProductRequest;
 
 public class CheckProductException extends Exception {
     public TppProductRequest tppProductRequest;
+    public Long idProduct;
     public CheckProductException() {}
 
-    public CheckProductException(TppProductRequest tppProductRequest) {
+    public CheckProductException(TppProductRequest tppProductRequest, Long idProduct) {
         this.tppProductRequest = tppProductRequest;
+        this.idProduct = idProduct;
     }
 
     public TppProductRequest getTppProductRequest() {
         return tppProductRequest;
     }
 
-    public void setTppProductRequest(TppProductRequest tppProductRequest) {
-        this.tppProductRequest = tppProductRequest;
+    public Long getIdProduct() {
+        return idProduct;
     }
 }

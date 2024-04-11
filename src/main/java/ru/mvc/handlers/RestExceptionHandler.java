@@ -58,16 +58,23 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         JSONObject jResponse = new JSONObject();
         jResponse.put("Ошибка", "Параметр ContractNumber № договора  "
                 + ex.getTppProductRequest().getContractNumber() + " уже существует для ЭП с ИД "
-                + ex.getTppProductRequest().getInstanceId() + ".   ");
+                + ex.idProduct+ ".   ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
     }
     @ExceptionHandler(CheckAgreementException.class)
     public ResponseEntity<?> handle(CheckAgreementException ex) {
         JSONObject jResponse = new JSONObject();
-        jResponse.put("Ошибка", "Параметр № Дополнительного соглашения (сделки) Number " // TODO заменить getContractNumber
-                + ex.getTppProductRequest().getContractNumber() + " уже существует для ЭП с ИД "
+        jResponse.put("Ошибка", "Параметр № Дополнительного соглашения (сделки) Number "
+                + ex.getTppProductRequest().instanceArrangement.get(0).getNumber() + " уже существует для ЭП с ИД "
                 + ex.getTppProductRequest().getInstanceId() + ".   ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
+    }
+    @ExceptionHandler(CheckProductClassException.class)
+    public ResponseEntity<?> handle(CheckProductClassException ex) {
+        JSONObject jResponse = new JSONObject();
+        jResponse.put("Ошибка", "Текст: КодПродукта "
+                + ex.getTppProductRequest().getProductCode() + " не найдено в Каталоге продуктов tpp_ref_product_class");
+        return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
 }
 

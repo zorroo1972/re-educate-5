@@ -2,6 +2,7 @@ package ru.mvc.dto;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
+import ru.mvc.handlers.ProductType;
 
 import java.util.Date;
 
@@ -12,13 +13,13 @@ public class TppProductDto {
     @Id
     @GeneratedValue
     Long id;
-    @Column(name = "client_id", nullable = false)
+    @Column(name = "client_id")
     private Long clientId;
-    @Column(name = "date_of_conclusion", nullable = false)
+    @Column(name = "date_of_conclusion")
     private Date dateOfConclusion;
-    @Column(name = "days", nullable = false)
+    @Column(name = "days")
     private Long days;
-    @Column(name = "end_date_time", nullable = false)
+    @Column(name = "end_date_time")
     private Date endDateTime;
     @Column(name = "interest_rate_type", nullable = false)
     private String interestRateType;
@@ -26,13 +27,13 @@ public class TppProductDto {
     private Double nso;
     @Column(name = "number", nullable = false)
     private String number;
-    @Column(name = "penalty_rate", nullable = false)
+    @Column(name = "penalty_rate")
     private Double penaltyRate;
-    @Column(name = "priority", nullable = false)
+    @Column(name = "priority")
     private Long priority;
     @Column(name = "product_code_id", nullable = false)
     private Long productCodeId;
-    @Column(name = "reasone_close", nullable = false)
+    @Column(name = "reasone_close")
     private String reasoneClose;
     @Column(name = "requisite_type", nullable = false)
     private String requisiteType;
@@ -42,7 +43,7 @@ public class TppProductDto {
     private String state;
     @Column(name = "tax_rate", nullable = false)
     private Double taxRate;
-    @Column(name = "threshold_amount", nullable = false)
+    @Column(name = "threshold_amount")
     private Double thresholdAmount;
     @Column(name = "type", nullable = false)
     private String type;
@@ -190,5 +191,9 @@ public class TppProductDto {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setNso(ProductType productType) {
+
     }
 }
