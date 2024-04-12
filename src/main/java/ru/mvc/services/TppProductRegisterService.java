@@ -22,12 +22,6 @@ public class TppProductRegisterService {
     public TppProductRegisterService() {
     }
     public static ResponseEntity<?>  getTppProductRegisterResponse(Long registerId) {
-        /*
-        TppProductRegisterResponse tppProductRegisterResponse = new TppProductRegisterResponse();
-        tppProductRegisterResponse.setAccountId(String.valueOf(registerId));
-        tppProductRegisterResponse.setDateResponse();
-
-         */
         JSONObject jResponse = new JSONObject();
         JSONObject jSub = new JSONObject();
         jSub.put("accountId",registerId);
