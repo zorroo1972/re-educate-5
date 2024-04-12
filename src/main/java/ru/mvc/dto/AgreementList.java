@@ -1,11 +1,7 @@
 package ru.mvc.dto;
 
-
-import jakarta.persistence.*;
 import org.springframework.stereotype.Component;
-
 import java.util.Date;
-
 @Component
 public class AgreementList {
     private String generalAgreementId;
@@ -20,7 +16,6 @@ public class AgreementList {
     private Date closingDate;
 
     private Date cancelDate;
-
     private Long validityDuration;
 
     private String cancellationReason;
@@ -47,35 +42,9 @@ public class AgreementList {
 
     private String maximalInterestRateCoefficientAction;
 
-
-    public AgreementList(String generalAgreementId, String supplementaryAgreementId, String agreementType, Long shedulerJobId, String number, Date openingDate, Date closingDate, Date cancelDate, Long validityDuration, String cancellationReason, String status, Date interestCalculationDate, Double interestRate, Double coefficient, String coefficientAction, Double minimumInterestRate, String minimumInterestRateCoefficient, String minimumInterestRateCoefficientAction, Double maximalInterestRate, Double maximalInterestRateCoefficient, String maximalInterestRateCoefficientAction) {
-        this.generalAgreementId = generalAgreementId;
-        this.supplementaryAgreementId = supplementaryAgreementId;
-        this.agreementType = agreementType;
-        this.shedulerJobId = shedulerJobId;
-        this.number = number;
-        this.openingDate = openingDate;
-        this.closingDate = closingDate;
-        this.cancelDate = cancelDate;
-        this.validityDuration = validityDuration;
-        this.cancellationReason = cancellationReason;
-        this.status = status;
-        this.interestCalculationDate = interestCalculationDate;
-        this.interestRate = interestRate;
-        this.coefficient = coefficient;
-        this.coefficientAction = coefficientAction;
-        this.minimumInterestRate = minimumInterestRate;
-        this.minimumInterestRateCoefficient = minimumInterestRateCoefficient;
-        this.minimumInterestRateCoefficientAction = minimumInterestRateCoefficientAction;
-        this.maximalInterestRate = maximalInterestRate;
-        this.maximalInterestRateCoefficient = maximalInterestRateCoefficient;
-        this.maximalInterestRateCoefficientAction = maximalInterestRateCoefficientAction;
-    }
-
     public AgreementList() {
 
     }
-
     public String getGeneralAgreementId() {
         return generalAgreementId;
     }
@@ -83,7 +52,6 @@ public class AgreementList {
     public void setGeneralAgreementId(String generalAgreementId) {
         this.generalAgreementId = generalAgreementId;
     }
-
     public String getSupplementaryAgreementId() {
         return supplementaryAgreementId;
     }

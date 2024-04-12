@@ -16,7 +16,6 @@ import ru.mvc.requests.TppProductRegisterRequest;
 @RequestMapping(value = "corporate-settlement-account", produces = MediaType.APPLICATION_JSON_VALUE)
 public class TppProductRegisterController {
     @Autowired  TppProductRegisterService tppProductRegisterService;
-
     public TppProductRegisterController(TppProductRegisterService tppProductRegisterService) {
         this.tppProductRegisterService = tppProductRegisterService;
     }

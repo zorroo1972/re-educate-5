@@ -19,13 +19,13 @@ import java.util.StringJoiner;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        var fields = new StringJoiner(",","[","]");
+        var fields = new StringJoiner(",", "[", "]");
         JSONObject jResponse = new JSONObject();
-        ex.getBindingResult().getFieldErrors().forEach((error) ->{
+        ex.getBindingResult().getFieldErrors().forEach((error) -> {
             String field = ((FieldError) error).getField();
             fields.add(field);
         });
-        jResponse.put("Ошибка", "Имя обязательного параметра "+fields+ " не заполнено ");
+        jResponse.put("Ошибка", "Имя обязательного параметра " + fields + " не заполнено ");
         return new ResponseEntity<>(jResponse.toString(), HttpStatus.BAD_REQUEST);
     }
 
@@ -37,30 +37,34 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 + ex.getTppProductRegisterRequest().getInstanceId() + ".   ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(CheckRegisterTypeException.class)
     public ResponseEntity<?> handle(CheckRegisterTypeException ex) {
         var schema = ex.getTppRefProductRegisterTypeDto().getClass().getAnnotation(Table.class).schema();
         var table = ex.getTppRefProductRegisterTypeDto().getClass().getAnnotation(Table.class).name();
         JSONObject jResponse = new JSONObject();
-        jResponse.put("Ошибка", ": Код Продукта "+ex.getTppProductRegisterRequest().getRegistryTypeCode()+" не найдено в Каталоге продуктов "
-                +schema+"."+table+" для данного типа Регистра "
+        jResponse.put("Ошибка", ": Код Продукта " + ex.getTppProductRegisterRequest().getRegistryTypeCode() + " не найдено в Каталоге продуктов "
+                + schema + "." + table + " для данного типа Регистра "
                 + ex.getTppProductRegisterRequest().getRegistryTypeCode() + ".   ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(CheckAccountException.class)
     public ResponseEntity<?> handle(CheckAccountException ex) {
         JSONObject jResponse = new JSONObject();
         jResponse.put("Ошибка", ": Счет не найден ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(CheckProductException.class)
     public ResponseEntity<?> handle(CheckProductException ex) {
         JSONObject jResponse = new JSONObject();
         jResponse.put("Ошибка", "Параметр ContractNumber № договора  "
                 + ex.getTppProductRequest().getContractNumber() + " уже существует для ЭП с ИД "
-                + ex.idProduct+ ".   ");
+                + ex.idProduct + ".   ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(CheckAgreementException.class)
     public ResponseEntity<?> handle(CheckAgreementException ex) {
         JSONObject jResponse = new JSONObject();
@@ -69,6 +73,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 + ex.getTppProductRequest().getInstanceId() + ".   ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(CheckProductClassException.class)
     public ResponseEntity<?> handle(CheckProductClassException ex) {
         JSONObject jResponse = new JSONObject();
@@ -76,14 +81,23 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 + ex.getTppProductRequest().getProductCode() + " не найдено в Каталоге продуктов tpp_ref_product_class");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(CheckRegisterTypeExceptionEx.class)
     public ResponseEntity<?> handle(CheckRegisterTypeExceptionEx ex) {
         var schema = ex.getTppRefProductRegisterTypeDto().getClass().getAnnotation(Table.class).schema();
         var table = ex.getTppRefProductRegisterTypeDto().getClass().getAnnotation(Table.class).name();
         JSONObject jResponse = new JSONObject();
-        jResponse.put("Ошибка", ": Код Продукта "+ex.getTppProductRequest().getRegisterType()+" не найдено в Каталоге продуктов "
-                +schema+"."+table+" для данного типа Регистра "
+        jResponse.put("Ошибка", ": Код Продукта " + ex.getTppProductRequest().getRegisterType() + " не найдено в Каталоге продуктов "
+                + schema + "." + table + " для данного типа Регистра "
                 + ex.getTppProductRequest().getRegisterType() + ".   ");
+        return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CheckProductIdException.class)
+    public ResponseEntity<?> handle(CheckProductIdException ex) {
+        JSONObject jResponse = new JSONObject();
+        jResponse.put("Ошибка", "Экземпляр продукта с параметром instanceId "
+                + ex.getTppProductRequest().getInstanceId() + " не найден ");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
 }

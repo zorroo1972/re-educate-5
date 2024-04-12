@@ -21,7 +21,7 @@ public class TppProductController {
     }
     @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createTppProduct(@Valid @RequestBody TppProductRequest request) throws CheckProductException, CheckAgreementException, CheckProductClassException, CheckRegisterTypeException, CheckRegisterException, CheckRegisterTypeExceptionEx {
+    public ResponseEntity<?> createTppProduct(@Valid @RequestBody TppProductRequest request) throws CheckProductException, CheckAgreementException, CheckProductClassException, CheckRegisterTypeException, CheckRegisterException, CheckRegisterTypeExceptionEx, CheckProductIdException {
         return tppProductService.process(request);
     }
 }

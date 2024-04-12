@@ -34,12 +34,4 @@ public class AdditionalPropertiesVipDto {
         this.name = name;
     }
 
-    @Override
-    public String toString() {
-        return "AdditionalPropertiesVipDto{" +
-                "key='" + key + '\'' +
-                ", value='" + value + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

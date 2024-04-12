@@ -22,9 +22,8 @@ public class AccountHandler {
                 tppProductRegisterRequest.getRegistryTypeCode());
     if(accountPool == null) throw new CheckAccountException();
     var account = accountsRepo.findByBussyAndAccountPoolId(String.valueOf(accountPool.getId()));
-        // TODO
-    //account.setBussy(true);
-    //accountsRepo.save(account);
+    account.setBussy(true);
+    accountsRepo.save(account);
     return account;
     }
 }

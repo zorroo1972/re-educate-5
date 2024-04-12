@@ -1,10 +1,8 @@
 package ru.mvc.handlers;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.mvc.dto.AccountDto;
 import ru.mvc.dto.AccountPoolDto;
-import ru.mvc.dto.TppProductDto;
 import ru.mvc.exceptions.CheckAccountException;
 import ru.mvc.requests.TppProductRequest;
 
@@ -20,9 +18,8 @@ public class AccountHandlerExt extends AccountHandler implements AccountHandlerI
                 registerType);
         if(accountPool == null) throw new CheckAccountException();
         var account = accountsRepo.findByBussyAndAccountPoolId(String.valueOf(accountPool.getId()));
-        // TODO
-        //account.setBussy(true);
-        //accountsRepo.save(account);
+        account.setBussy(true);
+        accountsRepo.save(account);
         return account;
     }
 }
