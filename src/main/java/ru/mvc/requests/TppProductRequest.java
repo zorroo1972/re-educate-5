@@ -5,7 +5,6 @@ import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.annotation.Validated;
 import ru.mvc.dto.AdditionalPropertiesVipDto;
-import ru.mvc.dto.AgreementDto;
 import ru.mvc.dto.AgreementList;
 
 import java.util.ArrayList;
@@ -21,7 +20,7 @@ public class TppProductRequest {
         @NotBlank private String mdmCode;
         @NotBlank private String contractNumber;
         @NotNull private Date contractDate;
-        @NotNull private Long priority;
+        @NotNull private String priority;
          private Double interestRatePenalty;
          private Double minimalBalance;
          private Double thresholdAmount;
@@ -94,11 +93,11 @@ public class TppProductRequest {
                 this.contractDate = contractDate;
         }
 
-        public Long getPriority() {
+        public String getPriority() {
                 return priority;
         }
 
-        public void setPriority(Long priority) {
+        public void setPriority(String priority) {
                 this.priority = priority;
         }
 

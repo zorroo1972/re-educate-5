@@ -2,11 +2,14 @@ package ru.mvc.exceptions;
 
 import ru.mvc.dto.TppRefProductRegisterTypeDto;
 import ru.mvc.requests.TppProductRegisterRequest;
+import ru.mvc.requests.TppProductRequest;
 
 public class CheckRegisterTypeException extends Exception {
     public TppProductRegisterRequest tppProductRegisterRequest;
     public TppRefProductRegisterTypeDto tppRefProductRegisterTypeDto;
-    public CheckRegisterTypeException() {}
+
+    public CheckRegisterTypeException() {
+    }
 
     public CheckRegisterTypeException(TppProductRegisterRequest tppProductRegisterRequest, TppRefProductRegisterTypeDto tppRefProductRegisterTypeDto) {
         this.tppProductRegisterRequest = tppProductRegisterRequest;
@@ -29,3 +32,5 @@ public class CheckRegisterTypeException extends Exception {
         this.tppRefProductRegisterTypeDto = tppRefProductRegisterTypeDto;
     }
 }
+
+

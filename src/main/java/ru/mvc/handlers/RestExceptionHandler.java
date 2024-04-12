@@ -76,6 +76,16 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 + ex.getTppProductRequest().getProductCode() + " не найдено в Каталоге продуктов tpp_ref_product_class");
         return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
     }
+    @ExceptionHandler(CheckRegisterTypeExceptionEx.class)
+    public ResponseEntity<?> handle(CheckRegisterTypeExceptionEx ex) {
+        var schema = ex.getTppRefProductRegisterTypeDto().getClass().getAnnotation(Table.class).schema();
+        var table = ex.getTppRefProductRegisterTypeDto().getClass().getAnnotation(Table.class).name();
+        JSONObject jResponse = new JSONObject();
+        jResponse.put("Ошибка", ": Код Продукта "+ex.getTppProductRequest().getRegisterType()+" не найдено в Каталоге продуктов "
+                +schema+"."+table+" для данного типа Регистра "
+                + ex.getTppProductRequest().getRegisterType() + ".   ");
+        return new ResponseEntity<String>(jResponse.toString(), HttpStatus.NOT_FOUND);
+    }
 }
 
 

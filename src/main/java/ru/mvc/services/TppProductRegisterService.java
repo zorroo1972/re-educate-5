@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.mvc.handlers.RegisterHandler;
+import ru.mvc.handlers.RegisterHandlerExt;
 import ru.mvc.requests.TppProductRegisterRequest;
 import ru.mvc.repositories.*;
 import ru.mvc.exceptions.*;
@@ -16,7 +16,8 @@ import ru.mvc.exceptions.*;
 @Transactional
 public class TppProductRegisterService {
     @Autowired TppProductRegisterRepo registerRepo;
-    @Autowired RegisterHandler registerHandler;
+    @Autowired
+    RegisterHandlerExt registerHandlerExt;
 
     public TppProductRegisterService() {
     }
@@ -37,7 +38,7 @@ public class TppProductRegisterService {
         var registerTypeCode = tppProductRegisterRequest.getRegistryTypeCode();
         if(registerRepo.findByProductIdAndType(tppProductRegisterRequest.getInstanceId(),registerTypeCode)!= null)
             throw new CheckRegisterException(tppProductRegisterRequest);
-        var register = registerHandler.setRegister(tppProductRegisterRequest);
+        var register = registerHandlerExt.setRegister(tppProductRegisterRequest);
         registerRepo.save(register);
         return getTppProductRegisterResponse(Long.valueOf(register.getId()));
     }
