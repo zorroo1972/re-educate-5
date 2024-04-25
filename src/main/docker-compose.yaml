@@ -1,7 +1,7 @@
 version: '3.8'
 services:
-  client-backend:
-    image: zorroo1972/re-educate
+  backend-1:
+    image: zorroo1972/re-educate:v1.0.0
     build:
       context: .
       dockerfile: Dockerfile
@@ -11,7 +11,7 @@ services:
       - postgres
     environment:
       - SERVER_PORT= 8989
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/javadb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/javadb
 
   postgres:
     image: 'postgres'
@@ -20,6 +20,7 @@ services:
       - '5432:5432'
     environment:
       - 'POSTGRES_USER=sa'
+      - 'POSTGRES_PASSWORD=1'
       - 'POSTGRES_HOST_AUTH_METHOD=trust'
       - 'POSTGRES_DB=javadb'
     restart: unless-stopped
